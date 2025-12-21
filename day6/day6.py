@@ -1,6 +1,8 @@
 sum_a = 0
 i = 0
 
+# Part A
+
 while True:
     nums = []
     op = ''
@@ -35,6 +37,7 @@ while True:
 print("Part A:", sum_a)
 
 
+# Part B
 
 sum_b = 0
 i = 0
