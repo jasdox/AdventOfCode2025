@@ -1,5 +1,3 @@
-import copy
-
 with open("input.txt", 'r') as f:
     lines = f.readlines()
 
@@ -17,10 +15,13 @@ lines.insert(len(lines)+1, ["." for j in range(len(lines[0]))])
 count_a = 0
 count_b = 0
 
+locations = []
+
 # Part A
 for row in range(len(lines)):
     for col in range(len(lines[0])):
         if lines[row][col] == '@':
+            locations.append((row,col))
             adj_count = 0
             for i in range(row-1, row+2):
                 for j in range(col-1, col+2):
@@ -31,9 +32,11 @@ for row in range(len(lines)):
 
 # Part B
 while True:
-    lines_before = copy.deepcopy(lines)
-    for row in range(len(lines)):
-        for col in range(len(lines[0])):
+    new_locations = []
+    changed = False
+    for k in range(len(locations)):
+            row, col = locations[k]
+            removed = []
             if lines[row][col] == '@':
                 adj_count = 0
                 for i in range(row-1, row+2):
@@ -43,8 +46,12 @@ while True:
                 if adj_count <= 4:
                     count_b += 1
                     lines[row][col] = '.'
-    if lines == lines_before:
+                    changed = True
+                else:
+                    new_locations.append((row,col))
+    if not changed:
         break
+    locations = new_locations
 
 print("Part A:", count_a)
 print("Part B", count_b)
