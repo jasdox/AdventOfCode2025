@@ -48,4 +48,5 @@ count_b = 0
 for r in ranges:
     count_b += len(range(r[0], r[1]+1))
 
-print(count_b)
+
+print("Part B:", count_b)
