@@ -8,13 +8,16 @@ while True:
     op = ''
 
     with open("input.txt", 'r') as f:
+
+        # add numbers from column 1 to array for next col
         for line in f:
             try:
                 num = line.strip().split()[i]
                 nums.append(num)
             except IndexError:
                 pass
-
+    
+    # If nums is empty we have passed the end of the input and can stop
     if not nums:
         break
 
@@ -56,6 +59,7 @@ while True:
     if not nums:
         break
 
+    # If this line contains the operator, record it and reset ans accordingly 
     if nums[-1] != ' ' and nums[-1] != '\n':
         op = nums.pop(-1)
         if op == "+":
@@ -65,6 +69,7 @@ while True:
     else:
         nums.pop(-1)
 
+    # Triggers if we are between equations or at end of file, adds to sum_b with equation answer and moves to next input
     if len(''.join(nums).strip()) == 0:
         sum_b += ans
         ans = 0
@@ -72,7 +77,8 @@ while True:
             ans = 1
         i += 1
         continue
-        
+    
+    # Concatonate numbers in each column and perform operation to fill answer
     if op == "+":
         temp_str = ''
 
