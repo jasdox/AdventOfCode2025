@@ -2,7 +2,7 @@ import copy
 import sys
 from functools import lru_cache
 
-# Recursively compute the number of ways to reach a position by calling the function on itself at every '^' and stopping when hitting the bottom
+# Recursively compute the number of ways to go from a position by calling the function twice on itself at every '^' and stopping when hitting the bottom
 # Additionally uses a memoization cache to speed up already calculated positions
 @lru_cache(None)
 def quantum_count(row, col):
